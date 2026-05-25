@@ -6,7 +6,7 @@ export default function Desktop(): React.ReactElement {
     <div className="desktop-wrapper">
       <div className="desktop-container">
         {/* Header */}
-        <header className="header">
+        <div className="header">
           <div className="header-content">
             <img src="https://static.vecteezy.com/system/resources/thumbnails/019/813/207/small/modern-medical-and-health-care-center-ayurvedic-logo-design-illustration-free-vector.jpg" className="header-logo" alt="Ayurveda Logo" />
             <div className="header-titles">
@@ -19,18 +19,18 @@ export default function Desktop(): React.ReactElement {
               <p className="ministry-text">Ministry of Ayush</p>
             </div>
           </div>
-        </header>
+        </div>
 
         {/* Main Content */}
-        <main className="main-content">
+        <div className="main-content">
           {/* Clinical Search Node Section */}
-          <section className="card clinical-search-card">
+          <div className="card clinical-search-card">
             <h2 className="card-title clinical-title">
               Clinical Search Node &#40;GET Interface&#41;
             </h2>
 
             <div className="search-input-container">
-              <p className="search-placeholder">Enter traditional disease term</p>
+              <input type="text" id="search-input" placeholder="Enter traditional disease term"/>
               <svg
                 width="31"
                 height="26"
@@ -85,12 +85,12 @@ export default function Desktop(): React.ReactElement {
                 </div>
                 <div className="table-column col-2">
                   <div className="table-cell">
-                    <p className="table-text">AYU-RHEM-014</p>
+                    <p className="table-text" id="namaste-code">AYU-RHEM-014</p>
                   </div>
                 </div>
                 <div className="table-column col-3">
-                  <div className="table-cell">
-                    <p className="table-text">SF80</p>
+                  <div className="table-cell" >
+                    <p className="table-text" id="tm2-code">SF80</p>
                   </div>
                 </div>
                 <div className="table-column col-4">
@@ -100,12 +100,12 @@ export default function Desktop(): React.ReactElement {
                 </div>
               </div>
             </div>
-          </section>
+          </div>
 
           {/* Right Column */}
           <div className="right-column">
             {/* Core Automation Sync Section */}
-            <section className="card core-automation-card">
+            <div className="card core-automation-card">
               <h2 className="card-title automation-title">
                 Core Automation Sync &#40;POST&#41;
               </h2>
@@ -116,19 +116,19 @@ export default function Desktop(): React.ReactElement {
               <button className="btn btn-secondary">
                 <span className="btn-text">Trigger Live WHO Sync</span>
               </button>
-            </section>
+            </div>
 
             {/* System Status Metrics Section */}
-            <section className="card system-status-card">
+            <div className="card system-status-card">
               <h2 className="card-title status-title">System Status Metrics</h2>
               <p className="card-description status-description">
                 Active Version: 2026-01<br />
                 Database Status: Healthy<br />
                 Last Sync Cycle: 2026-05-25
               </p>
-            </section>
+            </div>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   );

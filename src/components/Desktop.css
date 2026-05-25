@@ -6,6 +6,7 @@
   left: 64px;
   top: 100px;
   overflow: hidden;
+  
 }
 
 /* Header SVG */
@@ -90,7 +91,8 @@
   padding: 10px 15px;
   border: 1px solid #b9b9b9;
   border-radius: 10px;
-  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  background-color: white;
   position: absolute;
 }
 
@@ -120,18 +122,12 @@
   width: 577px;
   height: 451px;
   left: 30px;
-  top: 142px;
+  top: 80px;
   gap: 31px;
 }
 
 /* Search Input Container */
 .search-input-container {
-  display: flex;
-  padding: 5px 9px 5px 15px;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #8e8d8d;
-  border-radius: 20px;
   width: 295px;
   height: 46px;
 }
@@ -146,13 +142,16 @@
   width: 227px;
   height: 33px;
   text-align: center;
-  margin: 0;
+  margin: 8px;
 }
 
 .search-icon {
   width: 30px;
   height: 25px;
   flex-shrink: 0;
+  position: absolute;
+  top: 70px;
+  left: 238px;
 }
 
 /* Button Styles */
@@ -214,8 +213,8 @@
   border: 1px solid #b9b9b9;
   border-radius: 1px;
   background-color: #ffffff;
-  width: 548px;
-  height: 151px;
+  width: 542px;
+  height: 145px;
   overflow: hidden;
 }
 
@@ -232,7 +231,7 @@
   align-items: flex-start;
   background-color: rgba(255, 255, 255, 0);
   width: 100%;
-  height: 62px;
+  height: 82px;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -269,9 +268,9 @@
 
 .table-cell {
   display: flex;
-  padding: 10px 12px;
+  padding: 8px 8px;
   align-items: flex-start;
-  width: 120px;
+  width: 142px;
   overflow: hidden;
   border: none;
   background: none;
@@ -304,7 +303,7 @@
   width: 523px;
   height: 210px;
   left: 670px;
-  top: 142px;
+  top: 80px;
   gap: 12px;
 }
 
@@ -325,7 +324,7 @@
   width: 523px;
   height: 195px;
   left: 670px;
-  top: 398px;
+  top: 335px;
   gap: 18px;
 }
 
@@ -372,4 +371,29 @@
   margin: 2px;
   position: absolute;
   box-shadow: 0px 3px 5px gray;
+}
+.main-content{
+  background: linear-gradient(0deg,rgb(171, 229, 252),white);
+  width: 100%;
+  height: 85%;
+  top:16%;
+  position: absolute;
+}
+#tm2-code
+{
+  background-color: #b1efb4;
+  color: rgb(1, 60, 1);
+  padding: 4px;
+}
+#namaste-code{
+  background-color: #cfcfcf;
+  color: #022134;
+  padding: 4px;
+}
+#search-input{
+  width: 260px;
+  height: 40px;
+  border-radius: 15px;
+  border: 2px solid rgb(188, 188, 188);
+  padding: 10px;
 }
