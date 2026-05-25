@@ -1,31 +1,29 @@
 /* Desktop Container */
 .desktop-container {
-  background-color: #ffffff;
-  min-width: 100vw;
-  min-height: 100vh;
-  position: absolute;
+  background: white;
+  min-width: 100%;
+  min-height: 100%;
   left: 64px;
   top: 100px;
   overflow: hidden;
 }
 
 /* Header SVG */
-.header-svg {
-  width: 100%;
+.ministry-logo 
+{
+  width: 60px;
   height: 94px;
+  right: 9%;
+  top: 3px;
   position: absolute;
-  left: -3px;
-  top: 0;
 }
 
 /* Logo Image */
-.logo-image {
+.header-logo {
   width: 137px;
   height: 94px;
-  position: absolute;
-  left: -3px;
-  top: -2px;
   max-width: none;
+  position: absolute;
 }
 
 /* Titles */
@@ -35,10 +33,10 @@
   font-size: 24px;
   width: 114px;
   height: 29px;
-  position: absolute;
   left: 122px;
   top: 32px;
   margin: 0;
+  position: absolute;
 }
 
 .emr-title {
@@ -47,7 +45,6 @@
   font-size: 24px;
   width: 53px;
   height: 29px;
-  position: absolute;
   left: 236px;
   top: 32px;
   margin: 0;
@@ -75,11 +72,12 @@
   color: #000000;
   font-family: 'Open Sans', sans-serif;
   font-size: 22px;
+  text-align: center;
   width: 123px;
   height: 90px;
   position: absolute;
-  left: 1166px;
-  top: 0;
+  right: 0px;
+  top: 22px;
   margin: 0;
 }
 
@@ -366,4 +364,12 @@
     right: 20px;
     left: auto;
   }
+}
+.header{
+  top: 0%;
+  width: 100%;
+  height: 15%;
+  margin: 2px;
+  position: absolute;
+  box-shadow: 0px 3px 5px gray;
 }
