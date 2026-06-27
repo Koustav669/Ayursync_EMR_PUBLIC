@@ -27,13 +27,12 @@
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
 </p>
 
----
 
-## 🏥 Problem Statement (SIH 2025 — PS Code: SIH25026)
+## 🏥 Problem Statement (SIH 2025 - PS Code: SIH25026)
 
 > *Develop API code to integrate NAMASTE and/or the International Classification of Diseases (ICD-11) via the Traditional Medicine Module 2 (TM2) into existing EMR systems that comply with Electronic Health Record (EHR) Standards for India.*
 
-India's traditional medicine systems — **Ayurveda, Yoga, Unani, Siddha, Sowa-Rigpa, and Homeopathy (AYUSH)** — serve over 500 million patients annually. Yet, no production-grade interoperability layer exists that maps these indigenous terminology standards to the globally recognized WHO ICD-11 classification system.
+India's traditional medicine systems - **Ayurveda, Yoga, Unani, Siddha, Sowa-Rigpa, and Homeopathy (AYUSH)** - serve over 500 million patients annually. Yet, no production-grade interoperability layer exists that maps these indigenous terminology standards to the globally recognized WHO ICD-11 classification system.
 
 **AyurSync EMR** solves this by providing a fully automated, real-time dual-coding engine that:
 
@@ -41,7 +40,6 @@ India's traditional medicine systems — **Ayurveda, Yoga, Unani, Siddha, Sowa-R
 2. Maintains live synchronization with the **official WHO ICD-11 API** to ensure mappings are always current
 3. Exposes a clean, RESTful interface that any existing EMR/EHR system can integrate with zero friction
 
----
 
 ## 🏗️ Architecture <a id="architecture"></a>
 
@@ -102,7 +100,6 @@ India's traditional medicine systems — **Ayurveda, Yoga, Unani, Siddha, Sowa-R
 └──────────────────────────┘
 ```
 
----
 
 ## ⚡ Tech Stack <a id="tech-stack"></a>
 
@@ -117,7 +114,6 @@ India's traditional medicine systems — **Ayurveda, Yoga, Unani, Siddha, Sowa-R
 | **Auth Protocol** | OAuth 2.0 (Client Credentials) | Machine-to-machine authentication with WHO ICD Access Management |
 | **Medical Standard** | WHO ICD-11 TM2 + NAMASTE | Dual-coding interoperability between Indian & international classifications |
 
----
 
 ## 🔥 Features <a id="features"></a>
 
@@ -145,9 +141,8 @@ India's traditional medicine systems — **Ayurveda, Yoga, Unani, Siddha, Sowa-R
 - **Strict Boot Validation**: Server refuses to start if any required environment variable is missing
 - **Structured Exception Handling**: All errors return consistent JSON responses with `success`, `detail`, and `status_code` fields
 - **CORS Middleware**: Configurable origin allowlist for cross-domain EMR integrations
-- **Async I/O**: All external HTTP calls use `httpx.AsyncClient` — zero blocking threads
+- **Async I/O**: All external HTTP calls use `httpx.AsyncClient` - zero blocking threads
 
----
 
 ## 🚀 Getting Started <a id="getting-started"></a>
 
@@ -162,9 +157,8 @@ Ensure you have the following installed on your system:
 | **npm** | ≥ 9.x | Bundled with Node.js |
 | **Git** | ≥ 2.x | [git-scm.com](https://git-scm.com/) |
 
----
 
-### Step 1 — Clone the Repository
+### Step 1 - Clone the Repository
 
 ```bash
 git clone https://github.com/Koustav669/Ayursync_EMR_PUBLIC.git
@@ -172,9 +166,8 @@ cd Ayursync_EMR_PUBLIC
 git checkout Demo
 ```
 
----
 
-### Step 2 — Set Up the Python Backend
+### Step 2 - Set Up the Python Backend
 
 #### 2.1 Create & activate a virtual environment
 
@@ -195,24 +188,22 @@ pip install -r requirements.txt
 ```
 
 This installs:
-- `fastapi` — API framework
-- `uvicorn` — ASGI server
-- `supabase` — Database client
-- `httpx` — Async HTTP client for WHO API calls
-- `python-dotenv` — Environment variable loader
-- `pydantic` — Data validation
+- `fastapi` - API framework
+- `uvicorn` - ASGI server
+- `supabase` - Database client
+- `httpx` - Async HTTP client for WHO API calls
+- `python-dotenv` - Environment variable loader
+- `pydantic` - Data validation
 
----
 
-### Step 3 — Set Up the Frontend
+### Step 3 - Set Up the Frontend
 
 ```bash
 npm install
 ```
 
----
 
-### Step 4 — Configure Environment Variables
+### Step 4 - Configure Environment Variables
 
 Copy the example environment file and fill in your credentials:
 
@@ -245,9 +236,8 @@ APP_ENV=development
 > | `WHO_CLIENT_ID` | [WHO ICD API Portal](https://icd.who.int/icdapi) → Register → My Apps → Client ID |
 > | `WHO_CLIENT_SECRET` | WHO ICD API Portal → My Apps → Client Secret |
 
----
 
-### Step 5 — Set Up the Database <a id="database-setup"></a>
+### Step 5 - Set Up the Database <a id="database-setup"></a>
 
 #### 5.1 Create a Supabase Project
 
@@ -319,9 +309,8 @@ CREATE POLICY "Allow service role write access"
     USING (auth.role() = 'service_role');
 ```
 
----
 
-### Step 6 — Launch the Application
+### Step 6 - Launch the Application
 
 #### 6.1 Start the Backend API Server
 
@@ -355,7 +344,6 @@ This launches Vite on `http://localhost:3000` with Hot Module Replacement.
 | Frontend UI | `http://localhost:3000` | AyurSync EMR dashboard with green "Healthy" status |
 | Search API | `http://localhost:8000/api/v1/search?term=Jwara` | JSON with matched terminology records |
 
----
 
 ## 📡 API Reference <a id="api-reference"></a>
 
@@ -386,7 +374,6 @@ Search the terminology mapping database by traditional disease term.
 }
 ```
 
----
 
 ### `POST /api/v1/sync/auto-update`
 
@@ -409,7 +396,6 @@ Triggers a live synchronization cycle against the WHO ICD-11 API.
 }
 ```
 
----
 
 ### `GET /`
 
@@ -423,13 +409,12 @@ Health check endpoint.
 }
 ```
 
----
 
 ## 📁 Project Structure
 
 ```
 AyurSync_EMR_PUBLIC/
-├── main.py                     # FastAPI backend — API routes, WHO sync engine, Supabase client
+├── main.py                     # FastAPI backend - API routes, WHO sync engine, Supabase client
 ├── requirements.txt            # Python dependencies
 ├── .env.example                # Template for required environment variables
 ├── index.html                  # Vite entry point
@@ -448,16 +433,14 @@ AyurSync_EMR_PUBLIC/
         └── Desktop.css         # Dashboard styling
 ```
 
----
 
 ## 🔐 Security Considerations
 
-- **All credentials are loaded from environment variables** via `python-dotenv` — zero hardcoded secrets
+- **All credentials are loaded from environment variables** via `python-dotenv` - zero hardcoded secrets
 - The `.gitignore` blocks `.env`, `.env.*`, certificates (`*.pem`, `*.key`), and all build artifacts
-- The server performs a **strict boot validation** — if any required variable is missing, it crashes immediately with a descriptive error rather than running in a degraded state
+- The server performs a **strict boot validation** - if any required variable is missing, it crashes immediately with a descriptive error rather than running in a degraded state
 - Supabase Row-Level Security (RLS) can restrict write access to the service role only
 
----
 
 ## 🛠️ Troubleshooting
 
@@ -469,13 +452,11 @@ AyurSync_EMR_PUBLIC/
 | `No terminology mappings found` | Empty database | Run the seed SQL from Step 5.3 |
 | Frontend shows "Offline" status | Backend unreachable | Check backend is running on port 8000, check CORS settings |
 
----
 
 ## 📜 License
 
 This project was developed as part of **Smart India Hackathon 2025** (Problem Statement SIH25026) under the **Ministry of AYUSH, Government of India**.
 
----
 
 <p align="center">
   <sub>Built with ❤️ for bridging Traditional Indian Medicine with Global Healthcare Standards</sub>
