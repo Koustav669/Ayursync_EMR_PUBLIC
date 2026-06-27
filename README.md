@@ -23,6 +23,7 @@
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
   <img src="https://img.shields.io/badge/Supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase"/>
   <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"/>
+  <img src="https://img.shields.io/badge/NAMASTE_Ayurvedic-FF7A00?style=for-the-badge&logoColor=white" alt="NAMASTE Ayurvedic"/>
   <img src="https://img.shields.io/badge/WHO_ICD--11-0072C6?style=for-the-badge&logo=world-health-organization&logoColor=white" alt="WHO ICD-11"/>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
 </p>
