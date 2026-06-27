@@ -9,14 +9,23 @@
   
 }
 
+/* Ministry Section Container */
+.ministry-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* Header SVG */
 .ministry-logo 
 {
-  width: 60px;
-  height: 94px;
-  right: 9%;
-  top: 3px;
-  position: absolute;
+  width: 50px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Logo Image */
@@ -72,14 +81,11 @@
 .ministry-text {
   color: #000000;
   font-family: 'Open Sans', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   text-align: center;
-  width: 123px;
-  height: 90px;
-  position: absolute;
-  right: 0px;
-  top: 22px;
+  width: auto;
   margin: 0;
+  line-height: 1.3;
 }
 
 /* Card Styles */
@@ -396,4 +402,44 @@
   border-radius: 15px;
   border: 2px solid rgb(188, 188, 188);
   padding: 10px;
+}
+
+/* Status Messages */
+.status-msg {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.error-msg {
+  color: #991b1b;
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+}
+
+.success-msg {
+  color: #166534;
+  background-color: #dcfce7;
+  border: 1px solid #86efac;
+}
+
+/* Disabled button state */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Empty table placeholder */
+.empty-text {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Scrollable table for multiple results */
+.table-container {
+  overflow-y: auto;
 }

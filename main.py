@@ -67,12 +67,12 @@ class SyncResponse(BaseModel):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("=" * 70)
-    print("🚀 Starting VedaLink Production API Gateway Engine...")
-    print(f"📡 Connected to Supabase Instance: {SUPABASE_URL}")
+    print("[STARTUP] Starting VedaLink Production API Gateway Engine...")
+    print(f"[DB] Connected to Supabase Instance: {SUPABASE_URL}")
     print("=" * 70)
     yield
     print("=" * 70)
-    print("🛑 Shutting down VedaLink API Gateway...")
+    print("[SHUTDOWN] Shutting down VedaLink API Gateway...")
     print("=" * 70)
 
 # ============================================================================
@@ -133,7 +133,7 @@ async def search_diagnosis(
     except HTTPException:
         raise
     except Exception as e:
-        print(f"❌ Database Query Execution Failure: {str(e)}")
+        print(f"[ERROR] Database Query Execution Failure: {str(e)}")
         raise HTTPException(
             status_code=500, 
             detail=f"Internal Database Transaction Error: {str(e)}"
@@ -148,7 +148,7 @@ async def auto_update_sync() -> SyncResponse:
     
     try:
         # Step 1: Query maximum tracking version from PostgreSQL instance
-        print("📊 Step 1: Querying latest system state from database tracking...")
+        print("[STEP 1] Querying latest system state from database tracking...")
         version_response = supabase_client.table("terminology_map").select("system_version").order("system_version", desc=True).limit(1).execute()
         if not version_response.data:
             raise HTTPException(
@@ -160,7 +160,7 @@ async def auto_update_sync() -> SyncResponse:
         print(f"   Current local baseline version tracked: {current_db_version}")
         
         # Step 2: Live Handshake with official WHO Identity Provider
-        print("📡 Step 2: Requesting OAuth2 token from official WHO Access Server...")
+        print("[STEP 2] Requesting OAuth2 token from official WHO Access Server...")
         token_url = "https://icdaccessmanagement.who.int/connect/token"
         token_data = {
             "grant_type": "client_credentials",
@@ -172,17 +172,17 @@ async def auto_update_sync() -> SyncResponse:
             auth_response = await client.post(token_url, data=token_data)
             
             if auth_response.status_code != 200:
-                print(f"❌ WHO Identity Verification Refused: {auth_response.text}")
+                print(f"[ERROR] WHO Identity Verification Refused: {auth_response.text}")
                 raise HTTPException(
                     status_code=401, 
                     detail=f"WHO Authentication Server Refused Access: {auth_response.text}"
                 )
                 
             access_token = auth_response.json()["access_token"]
-            print("   ✅ WHO Authentication Handshake validated successfully.")
+            print("   [OK] WHO Authentication Handshake validated successfully.")
             
-            # 🌍 Step 3: Fetching actual dynamic linearization release parameters
-            print("🌍 Step 3: Fetching active release parameters from WHO MMS standard...")
+            # Step 3: Fetching actual dynamic linearization release parameters
+            print("[STEP 3] Fetching active release parameters from WHO MMS standard...")
             headers = {
                 "Authorization": f"Bearer {access_token}",
                 "API-Version": "v2",
@@ -195,7 +195,7 @@ async def auto_update_sync() -> SyncResponse:
             release_response = await client.get(who_release_url, headers=headers)
             
             if release_response.status_code != 200:
-                print(f"❌ WHO Resource Server Error: {release_response.text}")
+                print(f"[ERROR] WHO Resource Server Error: {release_response.text}")
                 raise HTTPException(
                     status_code=release_response.status_code, 
                     detail=f"Failed to pull latest linearization data from WHO: {release_response.text}"
@@ -209,16 +209,16 @@ async def auto_update_sync() -> SyncResponse:
             print(f"   Latest production release ID found on WHO server: {latest_available_version}")
             
             # Step 4: Conditional Synchronization Check
-            print("⚖️  Step 4: Evaluating system state mismatch details...")
+            print("[STEP 4] Evaluating system state mismatch details...")
             update_available = latest_available_version != current_db_version
             records_updated = 0
             
             if update_available:
-                print(f"   ✅ Update required. Transitioning baseline state from {current_db_version} -> {latest_available_version}")
+                print(f"   [OK] Update required. Transitioning baseline state from {current_db_version} -> {latest_available_version}")
 
                 # Step 5: Live WHO search for every mapped term already in Supabase.
                 # This keeps the sync fully live and avoids invented delta payloads.
-                print("🔄 Step 5: Pulling live WHO search results for each mapped term...")
+                print("[STEP 5] Pulling live WHO search results for each mapped term...")
                 terms_response = supabase_client.table("terminology_map").select(
                     "id, traditional_term_name, namaste_system_code"
                 ).execute()
@@ -243,7 +243,7 @@ async def auto_update_sync() -> SyncResponse:
                     )
 
                     if search_response.status_code != 200:
-                        print(f"❌ WHO Autocode Server Error for '{query_text}': {search_response.text}")
+                        print(f"[ERROR] WHO Autocode Server Error for '{query_text}': {search_response.text}")
                         raise HTTPException(
                             status_code=search_response.status_code,
                             detail=f"Failed to autocode WHO term '{query_text}': {search_response.text}"
@@ -271,10 +271,10 @@ async def auto_update_sync() -> SyncResponse:
                         }
                     )
 
-                print(f"   ✅ WHO autocode returned {len(sync_payload)} live mapping row(s).")
+                print(f"   [OK] WHO autocode returned {len(sync_payload)} live mapping row(s).")
 
                 if skipped_terms:
-                    print(f"   ⚠️  {len(skipped_terms)} term(s) had no WHO autocode match and were skipped.")
+                    print(f"   [WARN] {len(skipped_terms)} term(s) had no WHO autocode match and were skipped.")
 
                 records_updated = len(sync_payload)
                 if sync_payload:
@@ -282,11 +282,11 @@ async def auto_update_sync() -> SyncResponse:
                         sync_payload,
                         on_conflict="namaste_system_code"
                     ).execute()
-                    print(f"   ✅ Live synchronization committed {records_updated} row(s) successfully.")
+                    print(f"   [OK] Live synchronization committed {records_updated} row(s) successfully.")
                 else:
-                    print("   ℹ️  No live WHO matches were found, so nothing was written to Supabase.")
+                    print("   [INFO] No live WHO matches were found, so nothing was written to Supabase.")
             else:
-                print(f"   ℹ️  Database architecture state tracking is fully up-to-date with WHO release ({current_db_version}).")
+                print(f"   [INFO] Database architecture state tracking is fully up-to-date with WHO release ({current_db_version}).")
                 
             return SyncResponse(
                 success=True,
@@ -302,7 +302,7 @@ async def auto_update_sync() -> SyncResponse:
     except HTTPException:
         raise
     except Exception as e:
-        print(f"❌ Critical Pipeline Failure on Synchronization Execution: {str(e)}")
+        print(f"[ERROR] Critical Pipeline Failure on Synchronization Execution: {str(e)}")
         raise HTTPException(
             status_code=500, 
             detail=f"Live Synchronization Automation Breakdown: {str(e)}"
