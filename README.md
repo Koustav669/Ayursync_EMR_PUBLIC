@@ -33,13 +33,7 @@
 
 > *Develop API code to integrate NAMASTE and/or the International Classification of Diseases (ICD-11) via the Traditional Medicine Module 2 (TM2) into existing EMR systems that comply with Electronic Health Record (EHR) Standards for India.*
 
-India's traditional medicine systems - **Ayurveda, Yoga, Unani, Siddha, Sowa-Rigpa, and Homeopathy (AYUSH)** - serve over 500 million patients annually. Yet, no production-grade interoperability layer exists that maps these indigenous terminology standards to the globally recognized WHO ICD-11 classification system.
-
-**AyurSync EMR** solves this by providing a fully automated, real-time dual-coding engine that:
-
-1. Maps **NAMASTE-coded** traditional disease terms to their corresponding **ICD-11 TM2** codes
-2. Maintains live synchronization with the **official WHO ICD-11 API** to ensure mappings are always current
-3. Exposes a clean, RESTful interface that any existing EMR/EHR system can integrate with zero friction
+**AyurSync EMR** engineers a high-performance, asynchronous API gateway that programmatically bridges India's **NAMASTE** ontology with the **WHO ICD-11 TM2** standard. By executing real-time semantic mapping and automated OAuth2-secured synchronization against the WHO MMS linearization endpoint, it delivers a zero-friction, RESTful dual-coding interoperability layer designed for immediate drop-in EHR integration.
 
 
 ## 🏗️ Architecture <a id="architecture"></a>
